@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <img class="imagen" src="../assets/implementos.png" alt="implementos">
+  <div class="container">
+    <div class="formulario">
+      <h2>Ingrese a su cuenta</h2>
+        <form [formGroup]="loginForm">
+        <mat-form-field appearance="outline">
+          <mat-label class="form">Nombre de usuario</mat-label>
+          <input matInput formControlName="username" placeholder="Nombre de usuario">
+          <mat-error>{{ getErrorMessage('username') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label class="form">Contraseña</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Contraseña">
+          <mat-error>{{ getErrorMessage('password') }}</mat-error>
+        </mat-form-field>
+
+        <div class="button_container">
+          <button class="mi-boton-regi" type="submit" mat-flat-button color="accent">Ingresar</button>
+          <button class="mi-boton-log" (click)="gotoRegister()" mat-stroked-button color="stroked">Crear cuenta</button>
+        </div>
+      </form>
+      <!-- <div class="button_container">
+        <button class="mi-boton-log" mat-stroked-button color="stroked">Ya tengo una cuenta</button>
+      </div> -->
+    </div>
+  </div>
+
+</body>
+
+
+</html>

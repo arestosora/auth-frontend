@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+@include mat.core();
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap);
+
+
+$my-primary: mat.define-palette(mat.$cyan-palette, 500);
+$my-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400, 50);
+
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: $my-primary,
+        accent: $my-accent,
+    )
+));
+
+@include mat.all-component-themes($my-theme);
+
+// Personalizacion
+.mi-boton-regi {
+    font-weight: bold;
+    font-size: 16px;
+    color: white !important;
+    font-family: 'Inter', 'Times New Roman';
+    font-weight: 600;
+  }
+
+.check{
+    border-color: #29A1B2 !important;
+    color: #29A1B2 !important;
+}
+
+.mi-boton-log{
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFD740 !important;
+    font-family: 'Inter', 'Times New Roman';
+    border-color:  #FFD740 !important;
+    font-weight: 600;
+}
+
+.mdc-text-field--outlined {
+    --mdc-outlined-text-field-outline-color: #29A1B2 !important;
+    --mdc-outlined-text-field-hover-outline-color: #29A1B2 !important;
+}
+
+.mat-mdc-checkbox.mat-primary {
+    --mdc-checkbox-selected-checkmark-color: white;
+    --mdc-checkbox-unselected-icon-color: #29A1B2 !important;
+    --mdc-checkbox-unselected-focus-icon-color: #29A1B2;
+    --mdc-checkbox-unselected-hover-icon-color: #29A1B2;}
+
+.mat-mdc-checkbox .mdc-form-field {
+    padding-top: 8px;
+    color: #45becf;
+    font-family: 'Inter', 'Times New Roman';
+    font-weight: 300;
+
+}
+
+.form{
+    color:  #29A1B2 !important;
+    border-color: #29A1B2 !important;
+    font-family: 'Inter', 'Times New Roman';
+    font-weight: 300;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    font-family: 'Inter', 'Times New Roman';
+    font-weight: 300;
+}
+
+.mat-mdc-form-field-error {
+    font-family: 'Inter', 'Times New Roman';
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.mat-mdc-form-field {
+    margin-bottom: 8px;
+}
+
+.mat-error{
+    display: inline;
+}
+
+
+
