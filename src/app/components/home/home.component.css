@@ -1,0 +1,33 @@
+
+mat-toolbar {
+    background-color: #1976D2;
+    color: white;
+    height: 64px;
+    box-shadow: 0 4px 6px -6px #222;
+  }
+  
+  mat-toolbar button {
+    color: white;
+    margin-left: 10px;
+    transition: background-color 0.3s; 
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  mat-toolbar button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .mat-toolbar-row {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  mat-toolbar span {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  

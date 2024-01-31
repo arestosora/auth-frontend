@@ -1,44 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent{
+export class RegisterComponent {
   registerForm: FormGroup;
   submitted = false;
   registrationSuccess = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      username: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      confirmpassword: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue],
-    },{ validator: this.passwordMatchValidator });
+    }, { validator: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
-  
+
     if (!passwordControl || !confirmPasswordControl) {
       return null;
     }
-  
+
     if (passwordControl.value !== confirmPasswordControl.value) {
       confirmPasswordControl.setErrors({ passwordMismatch: true });
-      
+
     } else {
       confirmPasswordControl.setErrors(null);
     }
-  
+
     return null;
 
   }
@@ -54,7 +56,7 @@ export class RegisterComponent{
 
   getErrorMessage(controlName: string): string {
     const control = this.registerForm.get(controlName);
-  
+
     if (control?.hasError('passwordMismatch')) {
       return 'Las contraseñas no coinciden';
     } else if (control?.hasError('required')) {
@@ -66,21 +68,28 @@ export class RegisterComponent{
     } else if (control?.hasError('requiredTrue')) {
       return 'Debe aceptar los términos y condiciones';
     }
-  
+
     return '';
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      this.registrationSuccess = true;
-      Swal.fire({
-        icon: 'success',
-        title: 'Registro exitoso',
-        text: '¡Bienvenido!',
-      });
+      this.authService.register(this.registerForm.value).subscribe(() => {
+        this.registrationSuccess = true;
+        this.gotoLogin()
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso',
+          text: '¡Bienvenido!',
+        });
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el formulario',
+          text: 'Parece que ha ocurrido un error, por favor verifica que no hayas usado este email con anterioridad.',
+        });
+      })
     } else {
-      // Muestra SweetAlert de error
       Swal.fire({
         icon: 'error',
         title: 'Error en el formulario',
@@ -88,10 +97,10 @@ export class RegisterComponent{
       });
     }
 
-}
+  }
 
-gotoLogin() {
-  this.router.navigate(['login']);
-}
+  gotoLogin() {
+    this.router.navigate(['login']);
+  }
 
 }

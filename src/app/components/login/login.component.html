@@ -15,9 +15,9 @@
       <h2>Ingrese a su cuenta</h2>
         <form [formGroup]="loginForm">
         <mat-form-field appearance="outline">
-          <mat-label class="form">Nombre de usuario</mat-label>
-          <input matInput formControlName="username" placeholder="Nombre de usuario">
-          <mat-error>{{ getErrorMessage('username') }}</mat-error>
+          <mat-label class="form">Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+          <mat-error>{{ getErrorMessage('email') }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -27,7 +27,7 @@
         </mat-form-field>
 
         <div class="button_container">
-          <button class="mi-boton-regi" type="submit" mat-flat-button color="accent">Ingresar</button>
+          <button class="mi-boton-regi" type="submit" (click)="onSubmit()" mat-flat-button color="accent">Ingresar</button>
           <button class="mi-boton-log" (click)="gotoRegister()" mat-stroked-button color="stroked">Crear cuenta</button>
         </div>
       </form>

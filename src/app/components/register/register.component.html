@@ -18,7 +18,7 @@
         <form [formGroup]="registerForm">
         <mat-form-field appearance="outline">
           <mat-label class="form">Nombre de usuario</mat-label>
-          <input matInput formControlName="username" placeholder="Nombre de usuario">
+          <input matInput formControlName="name" placeholder="Nombre de usuario">
           <mat-error>{{ getErrorMessage('username') }}</mat-error>
         </mat-form-field>
 
@@ -36,8 +36,8 @@
 
         <mat-form-field appearance="outline">
           <mat-label class="form">Confirmación</mat-label>
-          <input matInput formControlName="confirmPassword" type="password" placeholder="Confirmación">
-          <mat-error>{{ getErrorMessage('confirmPassword') }}</mat-error>
+          <input matInput formControlName="confirmpassword" type="password" placeholder="Confirmación">
+          <mat-error>{{ getErrorMessage('confirmpassword') }}</mat-error>
           <mat-error>{{ getPasswordMismatchError() }}</mat-error>
         </mat-form-field>
 
